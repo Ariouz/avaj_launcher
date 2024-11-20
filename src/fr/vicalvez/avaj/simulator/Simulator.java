@@ -64,6 +64,7 @@ public class Simulator {
 				if (flyable == null)
 					throw new Exception("Flyable is invalid");
 				weatherTower.register(flyable);
+				flyable.registerTower(weatherTower);
 			}
 
 		} catch (FileNotFoundException e) {
