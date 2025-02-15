@@ -1,5 +1,9 @@
 package fr.vicalvez.avaj.simulator;
 
+import fr.vicalvez.avaj.simulator.exceptions.InvalidFlyableException;
+import fr.vicalvez.avaj.simulator.exceptions.InvalidSimulationRoundException;
+import fr.vicalvez.avaj.simulator.exceptions.MissingArgumentException;
+import fr.vicalvez.avaj.simulator.exceptions.ScenarioNotFoundException;
 import fr.vicalvez.avaj.simulator.objects.aircraft.AircraftLoader;
 import fr.vicalvez.avaj.simulator.objects.aircraft.Flyable;
 import fr.vicalvez.avaj.simulator.objects.utils.LoggerUtil;
@@ -17,16 +21,13 @@ public class Simulator {
 		WeatherTower weatherTower = new WeatherTower();
 		int simulationRounds = 0;
 
-		if (args.length != 1)
-		{
-			System.out.println("Wrong args count");
-			return ;
-		}
-
 		try {
+			if (args.length != 1)
+				throw new MissingArgumentException("Wrong args count");
+
 			simulationRounds = parseAircrafts(args, weatherTower);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 		runSimulation(simulationRounds, weatherTower);
@@ -56,21 +57,23 @@ public class Simulator {
 			if (scanner.hasNextLine()) simulationRounds = Integer.parseInt(scanner.nextLine());
 
 			if (simulationRounds <= 0)
-				throw new Exception("Simulation round is <= 0, nothing to run.");
+				throw new InvalidSimulationRoundException("Simulation round is <= 0, nothing to run.");
 
 			while (scanner.hasNextLine())
 			{
-				Flyable flyable = AircraftLoader.parseFlyable(scanner.nextLine());
-				if (flyable == null)
-					throw new Exception("Flyable is invalid");
-				weatherTower.register(flyable);
-				flyable.registerTower(weatherTower);
+				try {
+					Flyable flyable = AircraftLoader.parseFlyable(scanner.nextLine());
+					weatherTower.register(flyable);
+					flyable.registerTower(weatherTower);
+				}catch (Exception e){
+					e.printStackTrace();
+				}
 			}
 
 		} catch (FileNotFoundException e) {
-			throw new Exception("File doesn't exist");
+			throw new ScenarioNotFoundException("Scenario file not found");
 		} catch (NumberFormatException e) {
-			throw new Exception("Invalid simulation round number");
+			throw new InvalidSimulationRoundException("Invalid simulation round number");
 		}
 
 		return simulationRounds;

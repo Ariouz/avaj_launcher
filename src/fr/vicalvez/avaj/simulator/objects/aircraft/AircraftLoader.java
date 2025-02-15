@@ -1,15 +1,13 @@
 package fr.vicalvez.avaj.simulator.objects.aircraft;
 
+import fr.vicalvez.avaj.simulator.exceptions.InvalidAircraftParamException;
+
 public class AircraftLoader {
 
-	public static Flyable parseFlyable(String line)
-	{
+	public static Flyable parseFlyable(String line) throws InvalidAircraftParamException {
 		String[] params = line.split(" ");
 		if (params.length != 5)
-		{
-			System.out.println("Invalid number of params:" + line);
-			return null;
-		}
+			throw new InvalidAircraftParamException("Invalid number of params:" + line);
 
 		int latitude;
 		int longitude;
@@ -19,22 +17,16 @@ public class AircraftLoader {
 			latitude = Integer.parseInt(params[2]);
 			longitude = Integer.parseInt(params[3]);
 			height = Integer.parseInt(params[4]);
-		} catch (NumberFormatException e)
-		{
-			System.out.println("Invalid coordinates value (must be a positive integer): " + line);
-			return null;
+		} catch (NumberFormatException e){
+			throw new InvalidAircraftParamException("Invalid coordinates value (must be a positive integer): " + line);
 		}
 
 		if (height < 0 || height > 100)
-		{
-			System.out.println("Invalid height value (must be between 0-100): " + line);
-			return null;
-		}
+			throw new InvalidAircraftParamException("Invalid height value (must be between 0-100): " + line);
 
 		Coordinates coordinates = new Coordinates(latitude, longitude, height);
 
-		Flyable flyable = AircraftFactory.getInstance().newAircraft(params[0], params[1], coordinates);
-		return flyable;
+		return AircraftFactory.getInstance().newAircraft(params[0], params[1], coordinates);
 	}
 
 }

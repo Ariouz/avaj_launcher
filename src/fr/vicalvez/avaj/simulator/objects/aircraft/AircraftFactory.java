@@ -1,5 +1,6 @@
 package fr.vicalvez.avaj.simulator.objects.aircraft;
 
+import fr.vicalvez.avaj.simulator.exceptions.InvalidAircraftParamException;
 import fr.vicalvez.avaj.simulator.objects.aircraft.entities.AircraftType;
 
 public final class AircraftFactory {
@@ -15,13 +16,10 @@ public final class AircraftFactory {
 		return instance;
 	}
 
-	public Flyable newAircraft(String type, String name, Coordinates coordinates) {
+	public Flyable newAircraft(String type, String name, Coordinates coordinates) throws InvalidAircraftParamException {
 		AircraftType aircraftType = AircraftType.getByType(type);
 		if (aircraftType == null)
-		{
-			System.out.println("Invalid aircraft type: " + type);
-			return null;
-		}
+			throw new InvalidAircraftParamException("Invalid aircraft type: " + type);
 
 		long id = aircraftId;
 		aircraftId++;
