@@ -27,7 +27,7 @@ public class Simulator {
 
 			simulationRounds = parseAircrafts(args, weatherTower);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("An error occured: " + e.getMessage());
 		}
 
 		runSimulation(simulationRounds, weatherTower);
@@ -66,7 +66,7 @@ public class Simulator {
 					weatherTower.register(flyable);
 					flyable.registerTower(weatherTower);
 				}catch (Exception e){
-					e.printStackTrace();
+					System.out.println("An error occured: " + e.getMessage());
 				}
 			}
 
