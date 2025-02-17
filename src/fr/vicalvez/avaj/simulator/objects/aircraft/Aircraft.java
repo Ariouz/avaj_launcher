@@ -4,11 +4,11 @@ import fr.vicalvez.avaj.simulator.objects.utils.LoggerUtil;
 import fr.vicalvez.avaj.simulator.objects.weather.WeatherProvider;
 import fr.vicalvez.avaj.simulator.objects.weather.WeatherType;
 
-public class Aircraft extends Flyable {
+public abstract class Aircraft extends Flyable {
 
 	protected final long id;
 	protected final String name;
-	protected final Coordinates coordinates;
+	protected Coordinates coordinates;
 
 	protected Aircraft(long id, String name, Coordinates coordinate)
 	{

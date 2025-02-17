@@ -2,10 +2,9 @@ package fr.vicalvez.avaj.simulator.objects.utils;
 
 import fr.vicalvez.avaj.simulator.objects.aircraft.Aircraft;
 import fr.vicalvez.avaj.simulator.objects.aircraft.Flyable;
-import fr.vicalvez.avaj.simulator.objects.aircraft.entities.AircraftType;
+import fr.vicalvez.avaj.simulator.objects.aircraft.AircraftType;
 import fr.vicalvez.avaj.simulator.objects.weather.WeatherType;
 
-import javax.xml.transform.Source;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

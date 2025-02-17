@@ -1,14 +1,11 @@
-package fr.vicalvez.avaj.simulator.objects.aircraft.entities;
+package fr.vicalvez.avaj.simulator.objects.aircraft;
 
-import fr.vicalvez.avaj.simulator.objects.aircraft.Aircraft;
-import fr.vicalvez.avaj.simulator.objects.aircraft.Coordinates;
-import fr.vicalvez.avaj.simulator.objects.utils.LoggerUtil;
 import fr.vicalvez.avaj.simulator.objects.weather.WeatherProvider;
 import fr.vicalvez.avaj.simulator.objects.weather.WeatherType;
 
-public class JetPlane extends Aircraft {
+public class Baloon extends Aircraft {
 
-	public JetPlane(long id, String name, Coordinates coordinate) {
+	public Baloon(long id, String name, Coordinates coordinate) {
 		super(id, name, coordinate);
 	}
 
@@ -24,25 +21,22 @@ public class JetPlane extends Aircraft {
 		switch (weatherType)
 		{
 			case SUN:
-				latitude += 10;;
-				height += 2;
+				longitude += 2;
+				height += 4;
 				break ;
 			case RAIN:
-				latitude += 5;
+				height -= 5;
 				break;
 			case FOG:
-				latitude += 1;
+				height -= 3;
 				break;
 			case SNOW:
-				height -= 7;
+				height -= 15;
 				break;
 			default:
 				break;
 		}
-
-		coordinates.setLatitude(latitude);
-		coordinates.setLongitude(longitude);
-
-		coordinates.setHeight(Math.min(height, 100));
+		coordinates = new Coordinates(latitude, longitude, Math.min(height, 100));
 	}
+
 }

@@ -1,10 +1,6 @@
-package fr.vicalvez.avaj.simulator.objects.aircraft.entities;
-
-import fr.vicalvez.avaj.simulator.objects.aircraft.Flyable;
+package fr.vicalvez.avaj.simulator.objects.aircraft;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public enum AircraftType {
 

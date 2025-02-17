@@ -2,7 +2,6 @@ package fr.vicalvez.avaj.simulator.objects.weather;
 
 import fr.vicalvez.avaj.simulator.objects.aircraft.Coordinates;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 

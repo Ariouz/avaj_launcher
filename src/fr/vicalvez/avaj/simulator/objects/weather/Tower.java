@@ -2,7 +2,7 @@ package fr.vicalvez.avaj.simulator.objects.weather;
 
 import fr.vicalvez.avaj.simulator.objects.aircraft.Aircraft;
 import fr.vicalvez.avaj.simulator.objects.aircraft.Flyable;
-import fr.vicalvez.avaj.simulator.objects.aircraft.entities.AircraftType;
+import fr.vicalvez.avaj.simulator.objects.aircraft.AircraftType;
 import fr.vicalvez.avaj.simulator.objects.utils.LoggerUtil;
 
 import java.util.ArrayList;

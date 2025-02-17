@@ -1,7 +1,6 @@
 package fr.vicalvez.avaj.simulator.objects.aircraft;
 
 import fr.vicalvez.avaj.simulator.exceptions.InvalidAircraftParamException;
-import fr.vicalvez.avaj.simulator.objects.aircraft.entities.AircraftType;
 
 public final class AircraftFactory {
 
